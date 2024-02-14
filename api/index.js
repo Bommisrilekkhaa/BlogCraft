@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.route.js';
@@ -24,12 +25,11 @@ mongoose
 const __dirname = path.resolve();
 
 const app = express();
-const cors = require('cors');
-app.use(cors({
 
-    origin: ["https://blog-craft.vercel.app"],
-    methods: ['POST','GET'],
-    credentials: true
+app.use(cors({
+  origin: 'https://blog-craft.vercel.app',
+  methods: ['GET','POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
