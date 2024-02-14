@@ -10,6 +10,8 @@ import path from 'path';
 
 dotenv.config({ path: '/.env' });
 
+
+
 mongoose
   .connect('mongodb+srv://Bommisrilekkhaa:kongu%402022@mern-blog.dig0qkw.mongodb.net/mern-blog?retryWrites=true&w=majority')
   .then(() => {
@@ -22,6 +24,13 @@ mongoose
 const __dirname = path.resolve();
 
 const app = express();
+const cors = require('cors');
+app.use(cors({
+
+    origin: ["https://blog-craft.vercel.app"],
+    methods: ['POST','GET'],
+    credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
